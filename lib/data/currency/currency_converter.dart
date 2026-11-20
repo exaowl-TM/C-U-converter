@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 //functions here take needed parameters and return list of data
 
-const apiBase = "https://api.frankfurter.dev";
+const apiBase = "api.frankfurter.dev";
 
 Future<double> convert(String base, String quote, num amount) async {
   final uri = Uri.https(apiBase, "v2/rate/$base/$quote");
