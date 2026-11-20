@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './data/currency/currency_converter.dart' as currency;
+
 void main() {
   runApp(const MainApp());
 }
@@ -7,10 +9,30 @@ void main() {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  Future<void> _handleConversion() async {
+    try {
+      // 2. Call the imported function directly
+      double result = await currency.convert('USD', 'JOD', 1);
+      debugPrint('Converted amount: $result');
+    } catch (e) {
+      debugPrint('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Builder(
+            builder: (innerContext) => ElevatedButton(
+              onPressed: () => _handleConversion(),
+              child: const Text('Convert 50 USD to EUR'),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
+//main,dart
